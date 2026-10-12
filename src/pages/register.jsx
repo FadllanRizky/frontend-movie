@@ -51,7 +51,8 @@ export default function Register() {
         window.location.href = "/login";
       }, 1000);
     } catch (err) {
-      setMsg(err.response?.data?.msg || "Register gagal");
+      const data = err.response?.data;
+      setMsg(data?.details ? `${data.msg}: ${data.details}` : data?.msg || "Register gagal");
     } finally {
       setLoading(false);
     }

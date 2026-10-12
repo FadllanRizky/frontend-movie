@@ -23,7 +23,8 @@ export default function Login() {
         window.location.href = "/";
       }, 500);
     } catch (err) {
-      setMsg(err.response?.data?.msg || "Login gagal");
+      const data = err.response?.data;
+      setMsg(data?.details ? `${data.msg}: ${data.details}` : data?.msg || "Login gagal");
     } finally {
       setLoading(false);
     }
